@@ -1,4 +1,9 @@
-h1 {
-	text-align: center;
+html {
+	max-width: 50em;
+	margin: 0 auto;
+}
+
+
+h1,h2 {
 	font-family: Helvetica;
 }

@@ -8,8 +8,9 @@ getDate();
 
 function weather() {
 
-    var apiKey = '9f393b3649ff07769b75d4b7bc75fcd3'; 
+    var weather = document.getElementById("weather");
     var url = 'https://api.forecast.io/forecast/';
+    var apiKey = '9f393b3649ff07769b75d4b7bc75fcd3'; 
 
     navigator.geolocation.getCurrentPosition(success, error);
 
@@ -17,39 +18,37 @@ function weather() {
       latitude = position.coords.latitude;
       longitude = position.coords.longitude;
 
-		var request = new XMLHttpRequest();
-		request.open('GET',url + apiKey + "/" + latitude + "," + longitude + "?callback=?", true);
-
-		request.onload = function() {
-		  if (request.status >= 200 && request.status < 400) {
-		    var data = JSON.parse(request.responseText);
-		    document.getElementById("weather").innerHTML = data.currently.temperature + '° F';
-		  } else {
-		    alert("error with weather request")
-		  }
-		};
-
-		request.onerror = function() {
-			alert("connection error")
-			};
-
-		request.send();      		 
+       $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function(data) {
+        weather.innerHTML=('Based on your current location, it is ' + data.currently.temperature + '° F right now');
+      });
     }
 
     function error() {
-      alert("Unable to retrieve your location");
+     alert("Unable to retrieve your location for weather");
     }
-  };
+
+    weather.innerHTML = "fetching weather...";
+  }
 
 weather();
 
 
+function news() {
+
+	var news = document.getElementById("news");
+	var url = "https://newsapi.org/v1/articles?source=google-news&sortBy=top&apiKey=";
+	var apiKey = "83781e51c30e4a3bb7cc2b0ffde70d8c";
 
 
+	$.getJSON(url + apiKey, function(data) {
+		var titles = data.articles.map(function(articles) {
+                    return "<a href=" + articles.url + ">" + articles.title + "</a>";
+                  });
+		               
 
+        news.innerHTML=("Latest news: <br>" + titles.join("<br>"));
+      });
 
-
-//  $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function(data) {
-      //   $('#temp').html(data.currently.temperature + '° F');
-      //   $('#minutely').html(data.minutely.summary);
-      // });
+	news.innerHTML = "fetching news..."
+}
+news();
