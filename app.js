@@ -46,7 +46,7 @@ function news() {
                   });
 		               
 
-        news.innerHTML=("Latest news: <br>" + titles.join("<br>"));
+        news.innerHTML=("Latest news: <br><br>" + titles.join("<br><br>"));
       });
 
 	news.innerHTML = "fetching news..."
