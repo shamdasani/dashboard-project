@@ -1,4 +1,3 @@
-
 function getDate() {
 	var date = document.getElementById("date"); 
 	date.innerHTML = (new Date()).toString().split(' ').splice(0,4).join(' ');
@@ -46,7 +45,7 @@ function news() {
                   });
 		               
 
-        news.innerHTML=("Latest news: <br><br>" + titles.join("<br><br>"));
+        news.innerHTML=(titles.join("<br><br>"));
       });
 
 	news.innerHTML = "fetching news..."
