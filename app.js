@@ -13,8 +13,6 @@ function loadWeather() {
   var url = "https://api.forecast.io/forecast/";
   var apiKey = "9f393b3649ff07769b75d4b7bc75fcd3";
 
-  navigator.geolocation.getCurrentPosition(success, error);
-
   function success(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
@@ -27,6 +25,8 @@ function loadWeather() {
   function error() {
     alert("Unable to retrieve your location for weather");
   }
+
+  navigator.geolocation.getCurrentPosition(success, error);
 
   weather.text("fetching weather...");
 }
