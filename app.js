@@ -3,8 +3,6 @@ function getDate() {
   date.innerHTML = (new Date()).toString().split(' ').splice(0,4).join(' ');
 }
 
-getDate();
-
 function weather() {
   var weather = document.getElementById("weather");
   var url = 'https://api.forecast.io/forecast/';
@@ -28,8 +26,6 @@ function weather() {
   weather.innerHTML = "fetching weather...";
 }
 
-weather();
-
 function news() {
   var news = document.getElementById("news");
   var url = "https://newsapi.org/v1/articles?source=google-news&sortBy=top&apiKey=";
@@ -46,4 +42,6 @@ function news() {
   news.innerHTML = "fetching news..."
 }
 
+weather();
+getDate();
 news();
