@@ -16,8 +16,8 @@ function loadWeather() {
   navigator.geolocation.getCurrentPosition(success, error);
 
   function success(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
 
     $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function(data) {
       weather.text('Based on your current location, it is ' + data.currently.temperature + '° F right now');
