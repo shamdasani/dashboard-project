@@ -38,7 +38,7 @@ function loadNews() {
 
   $.getJSON(url + apiKey, function(data) {
     var titles = data.articles.map(function(articles) {
-      return "<a href=" + articles.url + ">" + articles.title + "</a>";
+      return "<a href='" + articles.url + "'>" + articles.title + "</a>";
     });
 
     news.html(titles.join("<br><br>"));
