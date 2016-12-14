@@ -1,17 +1,17 @@
 function loadDate() {
   var currentDate = new Date();
   var dateString = currentDate.toString()
-                     .split(' ')
+                     .split(" ")
                      .splice(0, 4)
-                     .join(' ');
+                     .join(" ");
 
   $("#date").text(dateString);
 }
 
 function loadWeather() {
   var weather = $("#weather");
-  var url = 'https://api.forecast.io/forecast/';
-  var apiKey = '9f393b3649ff07769b75d4b7bc75fcd3';
+  var url = "https://api.forecast.io/forecast/";
+  var apiKey = "9f393b3649ff07769b75d4b7bc75fcd3";
 
   navigator.geolocation.getCurrentPosition(success, error);
 
@@ -20,7 +20,7 @@ function loadWeather() {
     var longitude = position.coords.longitude;
 
     $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function(data) {
-      weather.text('Based on your current location, it is ' + data.currently.temperature + '° F right now');
+      weather.text("Based on your current location, it is " + data.currently.temperature + "° F right now");
     });
   }
 
