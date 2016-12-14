@@ -1,10 +1,15 @@
 function loadDate() {
-  var date = document.getElementById("date");
-  date.innerHTML = (new Date()).toString().split(' ').splice(0,4).join(' ');
+  var currentDate = new Date();
+  var dateString = currentDate.toString()
+                     .split(' ')
+                     .splice(0, 4)
+                     .join(' ');
+
+  $("#date").text(dateString);
 }
 
 function loadWeather() {
-  var weather = document.getElementById("weather");
+  var weather = $("#weather");
   var url = 'https://api.forecast.io/forecast/';
   var apiKey = '9f393b3649ff07769b75d4b7bc75fcd3';
 
@@ -15,7 +20,7 @@ function loadWeather() {
     longitude = position.coords.longitude;
 
     $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function(data) {
-      weather.innerHTML=('Based on your current location, it is ' + data.currently.temperature + '° F right now');
+      weather.text('Based on your current location, it is ' + data.currently.temperature + '° F right now');
     });
   }
 
@@ -23,11 +28,11 @@ function loadWeather() {
     alert("Unable to retrieve your location for weather");
   }
 
-  weather.innerHTML = "fetching weather...";
+  weather.text("fetching weather...");
 }
 
 function loadNews() {
-  var news = document.getElementById("news");
+  var news = $("#news");
   var url = "https://newsapi.org/v1/articles?source=google-news&sortBy=top&apiKey=";
   var apiKey = "83781e51c30e4a3bb7cc2b0ffde70d8c";
 
@@ -36,10 +41,10 @@ function loadNews() {
       return "<a href=" + articles.url + ">" + articles.title + "</a>";
     });
 
-    news.innerHTML = (titles.join("<br><br>"));
+    news.html(titles.join("<br><br>"));
   });
 
-  news.innerHTML = "fetching news..."
+  news.text("fetching news...");
 }
 
 loadDate();
